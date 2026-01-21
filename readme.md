@@ -30,5 +30,5 @@ You can’t maximize all three at once — every rendering mode gives you two ea
 - But content becomes outdated.
 
 Example:
-```ts
+``ts
 export const revalidate = false;
