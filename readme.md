@@ -32,3 +32,64 @@ You can’t maximize all three at once — every rendering mode gives you two ea
 Example:
 ``ts
 export const revalidate = false;
+
+
+
+
+
+
+
+#2
+
+## Environment Configuration & Secrets Management
+
+This project uses strict environment isolation to prevent
+cross-environment data corruption.
+
+### Environments
+- Development
+- Staging
+- Production
+
+Each environment has:
+- Separate configuration
+- Separate secrets
+- Separate databases
+
+### Secrets Handling
+- No secrets are committed to Git
+- Secrets are injected via CI/CD
+- Environment variables are validated at startup
+
+### Safety Checks
+- Production builds refuse non-production credentials
+- Database access is restricted per environment
+
+
+
+
+
+
+#3
+
+
+## Deployment Architecture Overview
+
+This project uses containerized, versioned deployments
+with strict environment variable management to ensure
+consistent production behavior.
+
+### Containerization Principles
+- One service = one container
+- Immutable images (no SSH into prod)
+- Versioned Docker images (not `latest`)
+
+### Environment Variables
+- No `.env` files in production
+- All variables injected via CI/CD or cloud secrets
+- Containers fail fast if required variables are missing
+
+### Deployment Strategy
+- Old containers are stopped before new ones start
+- Health checks determine traffic readiness
+- Only one active version serves production traffic
