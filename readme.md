@@ -32,3 +32,36 @@ You can’t maximize all three at once — every rendering mode gives you two ea
 Example:
 ``ts
 export const revalidate = false;
+
+
+
+
+
+
+
+#2
+
+## Environment Configuration & Secrets Management
+
+This project uses strict environment isolation to prevent
+cross-environment data corruption.
+
+### Environments
+- Development
+- Staging
+- Production
+
+Each environment has:
+- Separate configuration
+- Separate secrets
+- Separate databases
+
+### Secrets Handling
+- No secrets are committed to Git
+- Secrets are injected via CI/CD
+- Environment variables are validated at startup
+
+### Safety Checks
+- Production builds refuse non-production credentials
+- Database access is restricted per environment
+
